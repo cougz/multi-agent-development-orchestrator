@@ -122,7 +122,7 @@ Before installing MADO, ensure you have:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/mado-orchestrator.git
+git clone https://github.com/cougz/multi-agent-development-orchestrator.git
 cd mado-orchestrator
 
 # Run automated setup
@@ -141,7 +141,7 @@ The setup script will:
 
 ```bash
 # Clone and enter directory
-git clone https://github.com/your-org/mado-orchestrator.git
+git clone https://github.com/cougz/multi-agent-development-orchestrator.git
 cd mado-orchestrator
 
 # Install dependencies
@@ -637,8 +637,8 @@ npm start
 ### Support Channels
 
 - 📖 **Documentation**: [Full docs](docs/)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/your-org/mado-orchestrator/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/your-org/mado-orchestrator/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/cougz/multi-agent-development-orchestrator/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/cougz/multi-agent-development-orchestrator/discussions)
 - 📧 **Email**: support@mado-orchestrator.com
 
 ---
@@ -783,7 +783,7 @@ MADO is actively being developed with exciting features planned:
 Ready to transform your development workflow? 
 
 ```bash
-git clone https://github.com/your-org/mado-orchestrator.git
+git clone https://github.com/cougz/multi-agent-development-orchestrator.git
 cd mado-orchestrator
 npm run setup
 npm start
@@ -795,7 +795,7 @@ npm start
 
 <div align="center">
 
-**[⭐ Star us on GitHub](https://github.com/your-org/mado-orchestrator)** | **[📖 Read the Docs](docs/)** | **[💬 Join Discussions](https://github.com/your-org/mado-orchestrator/discussions)**
+**[⭐ Star us on GitHub](https://github.com/cougz/multi-agent-development-orchestrator)** | **[📖 Read the Docs](docs/)** | **[💬 Join Discussions](https://github.com/cougz/multi-agent-development-orchestrator/discussions)**
 
 Made with ❤️ by the MADO Team
 
