@@ -1,0 +1,96 @@
+{
+  "project": {
+    "name": "MADO Sample Project",
+    "description": "Multi-Agent Development Orchestrator Sample Configuration",
+    "version": "1.0.0",
+    "repository": ".",
+    "workingDirectory": ".",
+    "maxAgents": 10,
+    "defaultBranch": "main",
+    "templates": []
+  },
+  "git": {
+    "provider": "local",
+    "worktreeEnabled": true,
+    "conflictResolution": "hybrid",
+    "branchPrefix": "agent-",
+    "commitMessageTemplate": "[{agentId}] {type}: {description}"
+  },
+  "agents": {
+    "maxConcurrentAgents": 5,
+    "defaultRoles": ["frontend", "backend", "qa"],
+    "healthCheckInterval": 30000,
+    "taskTimeout": 1800000,
+    "autoRestart": true,
+    "resourceLimits": {
+      "maxMemory": 1024,
+      "maxCpu": 80,
+      "maxDisk": 5120,
+      "maxNetworkBandwidth": 100
+    }
+  },
+  "messaging": {
+    "broker": "memory",
+    "queues": {},
+    "serialization": "json",
+    "compression": false,
+    "encryption": false
+  },
+  "monitoring": {
+    "enabled": true,
+    "metricsInterval": 5000,
+    "logLevel": "info",
+    "logFormat": "json",
+    "alerting": {
+      "enabled": true,
+      "channels": ["console"],
+      "thresholds": {
+        "agentFailureRate": 0.1,
+        "taskTimeout": 1800000,
+        "memoryUsage": 80,
+        "cpuUsage": 80,
+        "errorRate": 0.05
+      }
+    },
+    "dashboard": {
+      "enabled": true,
+      "port": 3000,
+      "refreshInterval": 5000,
+      "authentication": false
+    }
+  },
+  "integrations": {
+    "claudeCode": {
+      "enabled": true,
+      "version": "latest",
+      "binary": "claude",
+      "defaultModel": "claude-3-sonnet-20240229"
+    },
+    "github": {
+      "enabled": false,
+      "webhooks": false
+    },
+    "cicd": {
+      "provider": "none",
+      "enabled": false,
+      "triggers": [],
+      "notifications": false
+    }
+  },
+  "security": {
+    "authentication": false,
+    "authorization": false,
+    "apiKeys": [],
+    "rateLimiting": {
+      "enabled": true,
+      "requestsPerMinute": 100,
+      "burstLimit": 200
+    },
+    "sandbox": {
+      "enabled": true,
+      "allowedCommands": ["git", "npm", "yarn", "node", "python", "pip", "docker"],
+      "restrictedPaths": ["/etc", "/usr", "/sys", "/proc"],
+      "networkAccess": true
+    }
+  }
+}
