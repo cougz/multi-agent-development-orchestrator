@@ -123,7 +123,7 @@ Before installing MADO, ensure you have:
 ```bash
 # Clone the repository
 git clone https://github.com/cougz/multi-agent-development-orchestrator.git
-cd mado-orchestrator
+cd multi-agent-development-orchestrator
 
 # Run automated setup
 npm run setup
@@ -142,7 +142,7 @@ The setup script will:
 ```bash
 # Clone and enter directory
 git clone https://github.com/cougz/multi-agent-development-orchestrator.git
-cd mado-orchestrator
+cd multi-agent-development-orchestrator
 
 # Install dependencies
 npm install
@@ -820,7 +820,7 @@ Ready to transform your development workflow?
 
 ```bash
 git clone https://github.com/cougz/multi-agent-development-orchestrator.git
-cd mado-orchestrator
+cd multi-agent-development-orchestrator
 npm run setup
 npm start
 ```
