@@ -101,29 +101,31 @@ describe('ConfigManager', () => {
     it('should throw error for invalid configuration', async () => {
       const invalidConfig = {
         project: {
-          // Missing required fields
+          // Missing required fields like name, description, version, repository, workingDirectory
         }
       };
 
+      // Mock file system to return the invalid config
       mockFs.existsSync.mockReturnValue(true);
       mockFs.readFileSync.mockReturnValue(JSON.stringify(invalidConfig));
 
-      await expect(configManager.load()).rejects.toThrow('Configuration validation failed');
+      // Create a new config manager to avoid test environment fallbacks
+      const testConfigManager = new ConfigManager('/test/invalid/config.json');
+      
+      await expect(testConfigManager.load()).rejects.toThrow('Configuration validation failed');
     });
 
     it('should throw error when config file is not found', async () => {
       // Mock fs to simulate file not found
-      const originalNodeEnv = process.env.NODE_ENV;
-      process.env.NODE_ENV = 'production'; // Disable test fallback
+      mockFs.existsSync.mockReturnValue(false);
+      mockFs.readFileSync.mockImplementation(() => {
+        throw new Error('ENOENT: no such file or directory');
+      });
       
       // Create a custom config manager with a non-existent path
       const customConfigManager = new ConfigManager('/non/existent/path.json');
       
-      try {
-        await expect(customConfigManager.load()).rejects.toThrow();
-      } finally {
-        process.env.NODE_ENV = originalNodeEnv;
-      }
+      await expect(customConfigManager.load()).rejects.toThrow();
     });
   });
 
@@ -158,7 +160,9 @@ describe('ConfigManager', () => {
     });
 
     it('should validate configuration before saving', async () => {
-      const invalidConfig = {} as any;
+      const invalidConfig = {
+        // Missing required project field entirely
+      } as any;
 
       await expect(configManager.save(invalidConfig)).rejects.toThrow('Configuration validation failed');
     });
