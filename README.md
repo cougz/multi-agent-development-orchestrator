@@ -162,15 +162,17 @@ npm run demo
 
 ### ⚙️ Configuration
 
-#### 1. Basic Configuration
+MADO uses a JSON configuration file with optional environment variable overrides for sensitive data.
 
+#### Configuration Options
+
+**Option 1: JSON Configuration Only** (Development)
 ```bash
 # Copy and edit the configuration file
 cp config/default.json config/local.json
 ```
 
-Edit `config/local.json`:
-
+Edit `config/local.json` with all settings including API keys:
 ```json
 {
   "project": {
@@ -191,27 +193,43 @@ Edit `config/local.json`:
 }
 ```
 
-#### 2. Environment Variables
+**Option 2: JSON + Environment Overrides** (Production)
+```bash
+# Create minimal config without sensitive data
+cp config/default.json config/local.json
+```
 
-Create a `.env` file:
+Edit `config/local.json` (no API keys):
+```json
+{
+  "project": {
+    "name": "My MADO Project",
+    "workingDirectory": "/path/to/your/project"
+  },
+  "integrations": {
+    "claudeCode": {
+      "enabled": true
+    },
+    "github": {
+      "enabled": true
+    }
+  }
+}
+```
 
+Create `.env` for sensitive overrides:
 ```bash
 # Copy the template
 cp .env.example .env
 ```
 
-Edit `.env`:
-
+Edit `.env` (only sensitive data):
 ```env
-# Project Configuration
-MADO_PROJECT_NAME="My MADO Project"
-MADO_WORKING_DIR="/path/to/your/project"
-
-# API Keys
+# API Keys (override JSON config)
 ANTHROPIC_API_KEY="your-claude-api-key"
 GITHUB_TOKEN="your-github-token"
 
-# Logging
+# Optional overrides
 LOG_LEVEL="info"
 NODE_ENV="production"
 ```
@@ -220,14 +238,32 @@ NODE_ENV="production"
 
 ## 🎮 Usage
 
-### Starting the Orchestrator
+### Starting MADO
 
+#### Quick Start
 ```bash
-# Start the complete system
-npm start
+# 1. Configure the system (choose Option 1 or 2 above)
+cp config/default.json config/local.json
+# Edit config/local.json with your settings
 
-# Or start in development mode
+# 2. Start the orchestrator
+npm start
+```
+
+#### Development Mode
+```bash
+# Start with hot reload
 npm run dev
+```
+
+#### First-Time Setup
+If you haven't run setup yet:
+```bash
+# Complete setup (dependencies, build, config)
+npm run setup
+
+# Then start
+npm start
 ```
 
 ### Managing Individual Agents
